@@ -22,7 +22,7 @@ type 'perl configure.pl', and then go to build/, and type 'make'.  That
 should be it. You can use 'make -j' to speed up the compilation if you like.
 
 The test folder includes a few examples. To run the code, simply type 
-'xtron input output'.
+'xtron input >& output'.
 
 Note that this README is very brief. I trust that a lot of stuff are 
 self-explanatory to those who have code development experience on linux. 
