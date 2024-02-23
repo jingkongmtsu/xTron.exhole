@@ -1,0 +1,192 @@
+==17091== Memcheck, a memory error detector
+==17091== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==17091== Using Valgrind-3.12.0.SVN and LibVEX; rerun with -h for copyright info
+==17091== Command: /nfshome/jing/xTron_build/xTron.hole4ml/xtron.exe he_hfxholes.in
+==17091== 
+
+*******************************************
+*     The Original Input File Content     *
+*******************************************
+##############
+# Example for multipoint hfx hole with multithreads
+#############
+
+%global_infor
+multi_threads true
+cpu_threads_number 2
+main spjobs
+%end
+
+%molecule
+0 1
+He   0.  0.   0.0
+%end
+
+%basis
+g3large
+%end
+
+%xcfunc
+name  hf
+%end
+
+%scf
+max_scf_cycles  50
+%end
+
+%molecule
+0 1
+He   0.  0.   0.0
+%end
+
+%basis
+g3large
+%end
+
+%parameters
+xcints.xcoper true
+xcints.xcprop hfxhole
+xcints.nsvalues 2
+xcints.1point 0.1     
+xcints.1atom 0
+xcints.holefile t.sv
+XCInts.XCHoleAvg.dumpBatchHoles true
+%end
+
+%xcfunc
+name  M_BR94CORR_OPP_X3
+%end
+
+%scf
+max_scf_cycles  1
+%end
+
+%xcints
+grid_points  3 1
+threshold   1.0e-12
+npt_cpu_thread 2
+DO_XC_ENERGY_PROFILE true
+%end
+
+
+*******************************************
+*            GlobalInfor Print            *
+*******************************************
+input   file is        : he_hfxholes.in
+scratch file is        : /scratch/jing/270e-1eb2-f1ed-5d23
+Main func    is        : SPJOBS
+number of CPU threads  : 2
+we use multi-threads 
+----------------------------------------------
+          SINGLE POINT SCF CALCULATION        
+----------------------------------------------
+number of basis sets 10
+DIIS error 0.2611109968    
+HF iter is: 0, @@@@@ total energy is: -2.7505173167    
+The most lowest energy so far is: -2.7505173167   , scf index is 0
+NucRepulsion 0.0000000000    
+core -3.9964661684   
+JK   energy is: 1.2459488516    
+XC   0.0000000000    
+MTAG HF   0   0 -2.7505173167    0.2611109968    
+DIIS error 0.0223012323    
+HF iter is: 1, @@@@@ total energy is: -2.8585618263    
+The most lowest energy so far is: -2.8585618263   , scf index is 1
+NucRepulsion 0.0000000000    
+core -3.9075539808   
+JK   energy is: 1.0489921545    
+XC   0.0000000000    
+MTAG HF   1   1 -2.8585618263    0.0223012323    
+DIIS error 0.0036689466    
+HF iter is: 2, @@@@@ total energy is: -2.8599489368    
+The most lowest energy so far is: -2.8599489368   , scf index is 2
+NucRepulsion 0.0000000000    
+core -3.8879795419   
+JK   energy is: 1.0280306051    
+XC   0.0000000000    
+MTAG HF   2   2 -2.8599489368    0.0036689466    
+DIIS error 0.0002672979    
+HF iter is: 3, @@@@@ total energy is: -2.8599836349    
+The most lowest energy so far is: -2.8599836349   , scf index is 3
+NucRepulsion 0.0000000000    
+core -3.8849373501   
+JK   energy is: 1.0249537152    
+XC   0.0000000000    
+MTAG HF   3   3 -2.8599836349    0.0002672979    
+DIIS error 0.0000234581    
+HF iter is: 4, @@@@@ total energy is: -2.8599839179    
+The most lowest energy so far is: -2.8599839179   , scf index is 4
+NucRepulsion 0.0000000000    
+core -3.8848111490   
+JK   energy is: 1.0248272311    
+XC   0.0000000000    
+MTAG HF   4   4 -2.8599839179    0.0000234581    
+DIIS error 0.0000001702    
+HF iter is: 5, @@@@@ scf converged energy is: -2.8599839208    
+The most lowest energy so far is: -2.8599839208   , scf index is 5
+NucRepulsion 0.0000000000    
+core -3.8847979564   
+JK   energy is: 1.0248140356    
+XC   0.0000000000    
+MTAG HF   5   5 -2.8599839208    0.0000001702    
+========================================
+Dipole Moment(Debye) in post SCF process
+========================================
+dipole moment: 0.00000000       0.00000000       0.00000000     
+total dipole moment: 0.00000000     
+ 25.465575s wall, 25.350000s user + 0.120000s system = 25.470000s CPU (100.0%)
+-----------Second SCF begins-----------
+iAtom 0
+
+*******************************************
+*        MolShellSize Object Print        *
+*******************************************
+Atomic number: 2     with radius:  17.203393   
+Shell Radius:  1       2.905372    
+Shell Radius:  2       5.577610    
+Shell Radius:  3       10.357468   
+Shell Radius:  4       17.203393   
+Shell Radius:  5       4.471391    
+Shell Radius:  6       8.783673    
+
+WARN: nAngPts == 1
+In formBatch: nTotalPts = 3
+In formBatch: initBatchSize = 2
+In formBatch: nBatches = 2
+In molegrids: nBatches = 2
+In xcints: len = 2
+ubrxA -0.211  EXRA -0.190  ubrxB -0.211  EXRB -0.190  f  0.000
+In integrate: 4911.2  5.92327e-08  -7.47324e-08
+In integrate: 4911.2  5.92327e-08  -0.000619634
+ubrxA -1.723  EXRA -1.672  ubrxB -1.723  EXRB -1.672  f  0.049
+In integrate: 0.00924129  1.39122  -0.42421
+In integrate: 5.05268  0.201549  -0.200355
+In integrate: 0.00924129  1.39122  -6.7466e-09
+In integrate: 5.05268  0.201549  -9.98692e-09
+HOLE IS DONE
+==17091== 
+==17091== Process terminating with default action of signal 6 (SIGABRT): dumping core
+==17091==    at 0xB86CFFF: raise (raise.c:51)
+==17091==    by 0xB86E429: abort (abort.c:89)
+==17091==    by 0x23EB63: xcints::XCInts::doXCMtrx(shell::MolShell const&, denmtrx::DenMtrx const&, spinmatrix::SpinMatrix&, bool, bool) (in /nfshome/jing/xTron_build/xTron.hole4ml/xtron.exe)
+==17091==    by 0x1AD7FF: fock::Fock::addXCMtrx(scfparam::SCFParam const&, scfintscontroller::SCFIntsController const&, molecule::Molecule const&, shell::MolShell const&, denmtrx::DenMtrx const&) (in /nfshome/jing/xTron_build/xTron.hole4ml/xtron.exe)
+==17091==    by 0x19CCA6: scf::SCF::doSCF(globalinfor::GlobalInfor const&, molecule::Molecule const&, shell::MolShell const&, denmtrx::DenMtrx&) (in /nfshome/jing/xTron_build/xTron.hole4ml/xtron.exe)
+==17091==    by 0x170047: doSP(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, globalinfor::GlobalInfor const&) (in /nfshome/jing/xTron_build/xTron.hole4ml/xtron.exe)
+==17091==    by 0x14F4BB: main (in /nfshome/jing/xTron_build/xTron.hole4ml/xtron.exe)
+==17091== 
+==17091== HEAP SUMMARY:
+==17091==     in use at exit: 41,856 bytes in 208 blocks
+==17091==   total heap usage: 2,406,884 allocs, 2,406,676 frees, 205,075,281 bytes allocated
+==17091== 
+==17091== LEAK SUMMARY:
+==17091==    definitely lost: 0 bytes in 0 blocks
+==17091==    indirectly lost: 0 bytes in 0 blocks
+==17091==      possibly lost: 2,432 bytes in 8 blocks
+==17091==    still reachable: 39,424 bytes in 200 blocks
+==17091==                       of which reachable via heuristic:
+==17091==                         newarray           : 792 bytes in 3 blocks
+==17091==         suppressed: 0 bytes in 0 blocks
+==17091== Rerun with --leak-check=full to see details of leaked memory
+==17091== 
+==17091== For counts of detected and suppressed errors, rerun with: -v
+==17091== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

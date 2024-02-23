@@ -1,0 +1,40 @@
+The spherically averaged exact exchange hole (or HF exchange hole) is 
+often the target of approximate exchange hole models. It is a 1-d 
+function per a reference point r, say h(x,r). An interesting derived 
+object is the averaged spherical hole function over the whole molecule, 
+i.e. H(x) = int(h(x,r), r=whole space). XTron can calculate h(x,r) and H(x).
+
+A typical calculation includes two jobs. The first does a HF 
+(or another DFT) calculation to get the orbitals. The second job computes 
+the hole only. Here are the relevant input parameters for the second job:
+
+%parameters
+xcints.xcoper true
+xcints.xcprop hfxhole
+xcints.nsvalues 2     #number of x points. Points generated with dft radial point scheme.
+xcints.1point 0.1     #1 r point. Used if grid_points=(1,1). The coord is (0.1, 0, 0)
+xcints.1atom 0        #Use the grid points of atom 0 only.
+xcints.holefile t.sv  #filename for output.
+XCInts.XCHoleAvg.dumpBatchHoles true 
+%end
+
+%xcints
+grid_points  3 1   #dft grid (number of radial points, number of angular points)
+%end
+
+In the code, the reference points are stored as grid points. Here are the 
+lines of relevant code:
+xcints.1point  Line 538 atomgrids.cpp
+xcints.1atom  Line 42 molegrids.cpp
+
+Output:
+t.sv: h(x,r)
+One block for each r.
+In each block:
+Line 1:  r coordinates.
+Line 2: Comment 
+Line 3: values of Rho, GAA, TA, LA
+Line 4 to Line nsvalues+3:  x, h(x,r) 
+
+t.sv.Avg:
+Each line: x, H(x)
